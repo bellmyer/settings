@@ -1,0 +1,44 @@
+= Settings Generator
+
+On most of my projects at work (APIs and their accompanying CMS apps) we have need 
+of settings that can be stored in the database, and updated by our staff. Perhaps 
+the version of our app on the Beta server needs to communicate with a 3rd party's 
+test platform, while the version on the Prod server needs to work with the 3rd party's 
+production platform. Or maybe you just want Bill in Accounting to specify the 
+background color for his spiffy CMS. 
+ 
+
+== Setup
+
+We can install this generator in a few easy steps:
+
+1) Create our rails project:
+  rails spiffycms
+  cd spiffycms
+
+2) Run the generator:
+  ruby script/generate settings
+
+3) Update our database:
+  rake db:migrate
+
+4) Test our new installation:
+  rake db:test:prepare
+  rake test
+
+ 
+== Usage
+ 
+So how do we use it? After installation, there are three ways to use our new settings:
+  # Get/Set settings explicitly #
+  Setting.set('admin', 'jaime@someurl.com')
+  Setting.get('admin')    # returns 'jaime@someurl.com'
+
+  # Get/Set implicitly, which is more fun #
+  Setting.admin = 'jaime@someurl.com'
+  Setting.admin    # returns 'jaime@someurl.com'
+
+The third way is to launch the app, and go to /settings where you'll be treated to a 
+GUI with your basic CRUD functionality. Pretty slick. Be sure, if you have any 
+authentication in your app, to include it in settings_controller.rb, or anyone out 
+there will be able to change your site's settings. That's no fun.
