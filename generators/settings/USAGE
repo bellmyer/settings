@@ -1,0 +1,35 @@
+This is very easy to install, with no parameters:
+
+  ruby script/generate settings
+  
+This will create a settings table that will store
+various application settings in your database.
+
+It also creates a Settings controller, which you can
+use to manage your app settings.
+
+
+There are three ways to use settings.  Let's use the example of storing 
+the admin's e-mail address in the settings table.
+
+There's the fun and easy way in your code:
+
+	# Set the admin value #
+  Setting.admin = 'admin@ilovespam.com'
+  
+  # Retrieve the admin value #
+	Setting.admin
+	
+There's also the more explicit way in your code, which is good if you
+need your setting keys to have funny characters:
+
+	# Set the admin value #
+  Setting.set('admin.email', 'admin@ilovespam.com')
+  
+  # Retrieve the admin value #
+  Setting.get('admin.email')
+  
+Finally, there is also a web interface to manage your settings, in the
+controller called "settings".  Be sure to add any filters and/or
+authenticatoin to settings_controller.rb if needed.  You don't want
+just anyone mucking with your settings!

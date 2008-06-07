@@ -1,0 +1,6 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+api:
+  id: 1
+  name: api
+  value: http://someurl.com

@@ -1,0 +1,22 @@
+<h1>Settings</h1>
+
+<table border=0>
+<tr>
+	<% form_for :setting, @setting, :url=>{:action=>'create'} do |f| -%>
+		<td><%= f.text_field :name, :size=>10 %></td>
+		<td><%= f.text_field :value %></td>
+		<td><%= submit_tag 'create' %></td>
+	<% end %>
+</tr>
+	<% @settings.each do |setting| -%>
+		<% form_for :setting, setting, :url=>{:action=>'update'} do |f| -%>
+			<%= f.hidden_field :id %>
+			<tr>
+				<td id="setting_<%= setting.id %>"><%= setting.name %></td>
+				<td><%= f.text_field :value %></td>
+				<td><%= submit_tag 'update' %></td>
+				<td><%= link_to 'delete', {:action=>'delete', :id=>setting.id}, :confirm=>'Are you sure?' %></td>
+			</tr>
+		<% end %>
+	<% end %>
+</table>
